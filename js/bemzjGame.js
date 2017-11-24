@@ -79,7 +79,7 @@ function bling(target,time,alphaB,alphaA,loops){
 	 * target为目标
 	 * time为时间
 	 * alphaB为淡出度
-	 * alphaA为淡出度
+	 * alphaA为淡入度
 	 * loops为是否重复
 	 */
 	return LTweenLite.to(target,time,{alpha:alphaB,loop:loops}).to(target,time,{alpha:alphaA});
@@ -92,7 +92,7 @@ function getBitmap(name){
 }
 //返回按钮对象
 function getButton(name){
-	return new LButton(new LBitmap(new LBitmapData(imgList[name])));
+	return new LButton(new LBitmap(new LBitmapData(name)));
 }
 //返回位置横坐标
 function rCenterWidth(target){
