@@ -8,8 +8,16 @@
 	    <meta content="telephone=no" name="format-detection"/>
 		<title>好太太-上市</title>
 		<script type="text/javascript" src="js/lufylegend-1.10.1.min.js" ></script>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+		</style>
 	</head>
 	<body>
+		<div id="hotata"></div>
+		<audio id="gong"  preload  src="music/gong.mp3" hidden="hidden"></audio >
 		<script>
 			function audioAutoPlay(id,v){
 			    var audio = document.getElementById(id);
@@ -27,5 +35,8 @@
 			    }, false);
 			}
 		</script>
+		<script type="text/javascript" src="js/resource.js" ></script>
+		<script type="text/javascript" src="js/bemzjGame.js" ></script>
+		<script type="text/javascript" src="js/main.js" ></script>
 	</body>
 </html>
