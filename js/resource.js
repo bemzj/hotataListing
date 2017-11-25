@@ -31,6 +31,76 @@ var gameImg = [
 	{path:url+'img/alight.png',type:'img',name:'alight'},//光
 	{path:url+'img/gift.png',type:'img',name:'gift'},//礼物
 	{path:url+'img/shareRed.png',type:'img',name:'shareRed'},//分享
+	{path:url+'img/getBkg.jpg',type:'img',name:'getBkg'},//摇奖背景
+	{path:url+'img/giftCenter.png',type:'img',name:'giftCenter'},//礼品中心
+	{path:url+'img/taiger.png',type:'img',name:'taiger'},//摇奖背景
+	{path:url+'img/awardGift.png',type:'img',name:'awardGift'},//1288
+	{path:url+'img/window.png',type:'img',name:'window'},//窗口
+	{path:url+'img/window1.png',type:'img',name:'window1'},//窗口
+	{path:url+'img/shank01.png',type:'img',name:'shank01'},//摇一摇
+	{path:url+'img/shank02.png',type:'img',name:'shank02'},//摇一摇
+	{path:url+'img/egg.png',type:'img',name:'egg'},//摇蛋机
+	{path:url+'img/shankLeft.png',type:'img',name:'shankLeft'},//摇蛋机
+	{path:url+'img/ball01.png',type:'img',name:'ball01'},//彩蛋
+	{path:url+'img/ball02.png',type:'img',name:'ball02'},//彩蛋
+	{path:url+'img/ball03.png',type:'img',name:'ball03'},//彩蛋
+	{path:url+'img/ball04.png',type:'img',name:'ball04'},//彩蛋
+	{path:url+'img/ball05.png',type:'img',name:'ball05'},//彩蛋
+	{path:url+'img/ball06.png',type:'img',name:'ball06'},//彩蛋
+	{path:url+'img/ball07.png',type:'img',name:'ball07'},//彩蛋
+	{path:url+'img/hand.png',type:'img',name:'hand'},//手
+	{path:url+'img/nBkg.png',type:'img',name:'nBkg'},//数字背景
+	{path:url+'img/submit.png',type:'img',name:'submit'},//手
+	{path:url+'img/confirm.png',type:'img',name:'confirm'},//确定
+	{path:url+'img/popWindow.png',type:'img',name:'popWindow'},//弹窗
 ];
 //全局变量
-var backLayer,musicLayer,loadLayer,imgList;
+var backLayer,musicLayer,loadLayer,imgList,home;
+//egges
+function egges(x,y,name,arr,n){
+	base(this,LSprite,[]);
+	var self = this;
+	self.x = x;
+	self.y = y;
+	self.bitmap = getBitmap(name);
+	self.addChild(self.bitmap);
+	self.arr = arr;
+	self.n = n;
+}
+egges.prototype.play=function(time){
+	var self = this;
+	var sx = self.x;
+	var sy = self.y;
+	if(self.n == 4)
+	{
+		LTweenLite.to(self,time,{x:self.arr[0],y:self.arr[1],loop:true}).to(self,time,{x:self.arr[2],y:self.arr[3]}).to(self,time,{x:self.arr[4],y:self.arr[5]}).to(self,time,{x:sx,y:sy});
+	}else{
+		LTweenLite.to(self,time,{x:self.arr[0],y:self.arr[1],loop:true}).to(self,time,{x:self.arr[2],y:self.arr[3]}).to(self,time,{x:sx,y:sy});
+	}
+	
+}
+//数学
+function num(x,y,text){
+	base(this,LSprite,[]);
+	var self = this;
+	self.x = x;
+	self.y = y;
+	self.bitmap = getBitmap(imgList['nBkg']);
+	self.addChild(self.bitmap);	
+	self.text = new setText(3,3,42,text,'#f9eec6',true);
+	self.addChild(self.text);
+}
+//获取人数
+function getNumber(str){
+	base(this,LSprite,[]);
+	var self = this;
+	var mystr = str.toString().split('');
+	console.log(mystr);
+	self.addChild(new setText(0,3,36,"已有",'#f9eec6',true));
+	for(var i=0;i<mystr.length;i++)
+	{
+		self.addChild(new num(82+36*i,0,mystr[i]));
+	}
+	self.addChild(new setText(82+36*i,3,36,"人敲钟",'#f9eec6',true));
+	
+}
